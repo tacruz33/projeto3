@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+#include <fstream>
+
 
 using namespace std;
 
@@ -73,23 +75,25 @@ class paciente {
 };
 
 class mausoleu {
-
-
-       int id;
+    int id;
     string localizacao;
     vector<paciente> pacientes;
-    
-    private: 
+
+    private:
     static int contador;
 
     public:
-    mausoleu(){
+
+    mausoleu() {
         contador;
         id = contador;
     }
-    static int Getcontador(){
+
+    static int getContador() {
         return contador++;
     }
+
+
     static mausoleu leNovo() {
         mausoleu novoMausoleu;
         cout << "Digite a localicacao do novo mausoleu: ";
@@ -97,14 +101,13 @@ class mausoleu {
         getline(cin, loc);
         novoMausoleu.setLocalizacao(loc);
         return novoMausoleu;
-    };
-
+    }
     void listaDados() {
         cout << "Dados do mausoleu" << endl;
         cout << getLocalizacao() << endl;
-        cout << "Lista de pacientes deste mausoleu: "  << mausoleu::Getcontador() << endl;
+        cout << "Lista de pacientes deste mausoleu: " << mausoleu::getContador() << endl;
         for (paciente p:pacientes) {
-            //listar cada paciente0
+            //listar cada paciente
         }
     }
     void setLocalizacao(string _localizacao) {
@@ -125,12 +128,28 @@ class mausoleu {
     }
 };
 
-    int mausoleu:: contador = 0;
+int mausoleu::contador = 1;
 
 int main() {
-
     vector<mausoleu> mausoleus;
     limpaTela();
+
+    ifstream outMausoleus;
+
+// Abrindo 0 arquivo para leitura
+    outMausoleus.open("mausoleus.txt", ios_base::app);
+    if (outMausoleus.is_open()) {
+        string linha;
+        while (outMausoleus.eof() == false) {
+            getline(outMausoleus, linha);
+            cout << linha << endl;
+        }
+        outMausoleus.close();
+    } else {
+        cout << "Erro ao abrir o arquivo." << endl;
+    }
+    return 0;
+    
     int op;
     do {
         cout << "Opcoes" << endl;
@@ -145,11 +164,19 @@ int main() {
         if (op==1) {
             mausoleu novo = mausoleu::leNovo();
             mausoleus.push_back(novo);
+            
+            ofstream outMausoleus;
+            outMausoleus.open("mausoleus.txt", ios_base::app);
+            if (outMausoleus.is_open()) {
+                outMausoleus << novo.getContador() << endl;
+                outMausoleus << novo.getLocalizacao() << endl;
+                outMausoleus.close();
+            }
         }
+
         if (op==2) {
             for (mausoleu m:mausoleus) {
                 m.listaDados();
-            
             }
         }
         if (op==3) {
@@ -157,6 +184,7 @@ int main() {
             //localizar um mausoleu
             //inserir paciente no mausoleu
         }
+
     } while (op != 0);
     return 0;
 }
