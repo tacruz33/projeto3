@@ -222,6 +222,7 @@ int main() {
                 for (auto it=mausoleus.begin(); it!=mausoleus.end(); it++) {
                     if (it->getId()==_id) //encontrei o mausoleu certo
                         it->recepciona(novoPac);
+            
                 
                 }
 
