@@ -28,7 +28,13 @@ public:
         return id;
     }
 };
+class Turma{
 
+
+
+
+    
+}
 int Aluno::id = 1;
 
 int main() {
