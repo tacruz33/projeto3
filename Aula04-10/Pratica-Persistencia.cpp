@@ -23,7 +23,7 @@ public:
         cout << "Digite o seu CPF: ";
         cin.ignore();
         getline(cin, novousuario.cpf);
-
+>
         cout << "Digite o nome: ";
         getline(cin, novousuario.nome);
 
@@ -124,24 +124,25 @@ int main()
                 }
                 break;
             }
-            case 2:
-            {
-                string excluircpf;
-                cout << "Digite o CPF que será excluído: ";
-                cin.ignore();
-                getline(cin, excluircpf);
-                if (excluircpf.size() == 11)
-                {
-                    ExcluirUsuario(usuarios, excluircpf);
-                }
-                else
-                {
-                    cout << "CPF inválido. Deve ter 11 dígitos." << endl;
-                }
-                break;
+            // case 2:
+            // {
+            //     string excluircpf;
+            //     cout << "Digite o CPF que será excluído: ";
+            //     cin.ignore();
+            //     getline(cin, excluircpf);
+            //     if (excluircpf.size() == 11)
+            //     {
+            //         ExcluirUsuario(usuarios, excluircpf);
+            //     }
+            //     else
+            //     {
+            //         cout << "CPF inválido. Deve ter 11 dígitos." << endl;
+            //     }
+            //     break;
             }
             case 3:
-                // Implemente a funcionalidade de alteração aqui
+            
+               
                 break;
             case 4:
             {
@@ -169,7 +170,7 @@ int main()
             }
             case 0:
                 sair = true;
-                break;
+                break;      
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
                 break;
